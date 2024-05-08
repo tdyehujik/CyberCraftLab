@@ -1,0 +1,32 @@
+{
+  "version": "0.0.4",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "build": "tsc",
+    "start": "node index.js",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "precommit": "lint-staged",
+    "postinstall": "husky install",
+    "test-sample": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsconfig-paths": "^4.2.0",
+    "source-map-support": "^0.5.21",
+    "@sentry/node": "^7.108.0",
+    "humps": "^2.0.1",
+    "@nestjs/swagger": "^7.1.17",
+    "date-fns": "^3.0.1",
+    "@nestjs/axios": "^3.0.1",
+    "@nestjs/testing": "^10.0.0",
+    "@bull-board/express": "^5.15.3",
+    "@ntegral/nestjs-sentry": "^4.0.1",
+    "@aptos-labs/ts-sdk": "^1.9.1"
+  }
+}
