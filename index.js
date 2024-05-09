@@ -1,15 +1,14 @@
-function removeNthFromEnd(head, n) {
-  const dummy = new ListNode(0);
-  dummy.next = head;
-  let first = dummy;
-  let second = dummy;
-  for (let i = 0; i <= n; i++) {
-    first = first.next;
-  }
-  while (first !== null) {
-    first = first.next;
-    second = second.next;
-  }
-  second.next = second.next.next;
-  return dummy.next;
+function rob(nums) {
+  if (nums.length === 1) return nums[0];
+  const robRange = (start, end) => {
+    let prevMax = 0;
+    let currMax = 0;
+    for (let i = start; i <= end; i++) {
+      const temp = currMax;
+      currMax = Math.max(currMax, prevMax + nums[i]);
+      prevMax = temp;
+    }
+    return currMax;
+  };
+  return Math.max(robRange(0, nums.length - 2), robRange(1, nums.length - 1));
 }
