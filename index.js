@@ -1,17 +1,11 @@
-function partitionLabels(s) {
-  const last = new Array(26);
-  for (let i = 0; i < s.length; i++) {
-    last[s.charCodeAt(i) - "a".charCodeAt(0)] = i;
+function searchInsert(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (nums[mid] === target) return mid;
+    if (nums[mid] < target) left = mid + 1;
+    else right = mid - 1;
   }
-  let anchor = 0;
-  let j = 0;
-  const result = [];
-  for (let i = 0; i < s.length; i++) {
-    j = Math.max(j, last[s.charCodeAt(i) - "a".charCodeAt(0)]);
-    if (i === j) {
-      result.push(i - anchor + 1);
-      anchor = i + 1;
-    }
-  }
-  return result;
+  return left;
 }
