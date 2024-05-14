@@ -1,10 +1,28 @@
-function generateParenthesis(n) {
-  const result = [];
-  backtrack("", 0, 0);
-  return result;
-  function backtrack(current, open, close) {
-    if (current.length === 2 * n) result.push(current);
-    if (open < n) backtrack(current + "(", open + 1, close);
-    if (close < open) backtrack(current + ")", open, close + 1);
+function largestDivisibleSubset(nums) {
+  nums.sort((a, b) => a - b);
+  const dp = new Array(nums.length).fill(1);
+  let maxSubsetSize = 1;
+  let maxSubsetIdx = 0;
+  for (let i = 1; i < nums.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (nums[i] % nums[j] === 0) {
+        dp[i] = Math.max(dp[i], dp[j] + 1);
+        if (dp[i] > maxSubsetSize) {
+          maxSubsetSize = dp[i];
+          maxSubsetIdx = i;
+        }
+      }
+    }
   }
+  const result = [];
+  let prev = nums[maxSubsetIdx];
+  let count = maxSubsetSize;
+  for (let i = maxSubsetIdx; i >= 0; i--) {
+    if (prev % nums[i] === 0 && dp[i] === count) {
+      result.unshift(nums[i]);
+      prev = nums[i];
+      count--;
+    }
+  }
+  return result;
 }
